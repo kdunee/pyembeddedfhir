@@ -32,13 +32,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/kdunee/python_fhir_integration_testing
+    $ git clone git://github.com/kdunee/python-fhir-integration-testing
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/kdunee/python_fhir_integration_testing/tarball/master
+    $ curl -OJL https://github.com/kdunee/python-fhir-integration-testing/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/kdunee/python_fhir_integration_testing
-.. _tarball: https://github.com/kdunee/python_fhir_integration_testing/tarball/master
+.. _Github repo: https://github.com/kdunee/python-fhir-integration-testing
+.. _tarball: https://github.com/kdunee/python-fhir-integration-testing/tarball/master

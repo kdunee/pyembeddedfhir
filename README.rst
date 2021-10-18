@@ -3,11 +3,11 @@ python-fhir-integration-testing
 ===============================
 
 
-.. image:: https://img.shields.io/pypi/v/python_fhir_integration_testing.svg
-        :target: https://pypi.python.org/pypi/python_fhir_integration_testing
+.. image:: https://img.shields.io/pypi/v/python-fhir-integration-testing.svg
+        :target: https://pypi.python.org/pypi/python-fhir-integration-testing
 
-.. image:: https://img.shields.io/travis/kdunee/python_fhir_integration_testing.svg
-        :target: https://travis-ci.com/kdunee/python_fhir_integration_testing
+.. image:: https://img.shields.io/travis/kdunee/python-fhir-integration-testing.svg
+        :target: https://app.travis-ci.com/github/kdunee/python-fhir-integration-testing
 
 .. image:: https://readthedocs.org/projects/python-fhir-integration-testing/badge/?version=latest
         :target: https://python-fhir-integration-testing.readthedocs.io/en/latest/?version=latest

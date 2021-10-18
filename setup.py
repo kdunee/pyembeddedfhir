@@ -38,7 +38,7 @@ setup(
     packages=find_packages(include=['python_fhir_integration_testing', 'python_fhir_integration_testing.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/kdunee/python_fhir_integration_testing',
+    url='https://github.com/kdunee/python-fhir-integration-testing',
     version='0.1.0',
     zip_safe=False,
 )
