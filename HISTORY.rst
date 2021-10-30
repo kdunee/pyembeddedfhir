@@ -2,6 +2,8 @@
 History
 =======
 
+* #1 Added HAPI FHIR implementation.
+
 0.2.0 (2021-10-18)
 ------------------
 
