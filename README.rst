@@ -24,7 +24,7 @@ A simple way to use a 🔥 FHIR server in 🐍 Python integration tests.
 Features
 --------
 
-* TODO
+* Supports HAPI open-source FHIR server.
 
 Credits
 -------
