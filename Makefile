@@ -51,8 +51,10 @@ lint/flake8: ## check style with flake8
 	flake8 python_fhir_integration_testing tests
 lint/black: ## check style with black
 	black --check python_fhir_integration_testing tests
+lint/mypy: ## check typings with mypy
+	mypy --show-error-codes python_fhir_integration_testing tests
 
-lint: lint/flake8 lint/black ## check style
+lint: lint/flake8 lint/black lint/mypy ## check style
 
 test: ## run tests quickly with the default Python
 	pytest
