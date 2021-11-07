@@ -5,9 +5,9 @@ Usage
 python-fhir-integration-testing requires Docker to run the 🔥 FHIR server.
 Connection to the Docker daemon can be configured via environment variables:
 
-* **DOCKER_HOST** - The URL to the Docker host.
-* **DOCKER_TLS_VERIFY** - Verify the host against a CA certificate.
-* **DOCKER_CERT_PATH** - A path to a directory containing TLS certificates to use when connecting to the Docker host.
+* ``DOCKER_HOST`` - The URL to the Docker host.
+* ``DOCKER_TLS_VERIFY`` - Verify the host against a CA certificate.
+* ``DOCKER_CERT_PATH`` - A path to a directory containing TLS certificates to use when connecting to the Docker host.
 
 To use python-fhir-integration-testing in a project::
 
@@ -23,3 +23,5 @@ To use python-fhir-integration-testing in a project::
         port = running_fhir.port
         path = running_fhir.path
         host_port = running_fhir.host_port
+
+For available values of ``FHIRFlavor`` please refer to :class:`python_fhir_integration_testing.models.FHIRFlavor`.

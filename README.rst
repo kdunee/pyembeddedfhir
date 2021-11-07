@@ -25,7 +25,9 @@ Features
 --------
 
 * Uses Docker to run a FHIR server in a container. 
-* Supports HAPI open-source FHIR server.
+* Supported implementations:
+   * `HAPI FHIR <https://github.com/hapifhir/hapi-fhir>`_ server.
+   * Microsoft's `fhir-server <https://github.com/microsoft/fhir-server>`_.
 
 Credits
 -------

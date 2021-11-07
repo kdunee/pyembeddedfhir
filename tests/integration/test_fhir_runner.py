@@ -7,7 +7,10 @@ import pytest
 from python_fhir_integration_testing.fhir_runner import FHIRFlavor, FHIRRunner
 
 
-@pytest.fixture(scope="session", params=[FHIRFlavor.HAPI])
+@pytest.fixture(
+    scope="session",
+    params=[FHIRFlavor.HAPI, FHIRFlavor.MICROSOFT],
+)
 def running_fhir_url(request):
     flavor = request.param
     with FHIRRunner(flavor, host_ip="127.0.0.1") as running_fhir:
