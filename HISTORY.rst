@@ -2,7 +2,7 @@
 History
 =======
 
-1.1.0 (2021-11-07)
+1.1.1 (2021-11-07)
 ------------------
 
 * #8 Added Microsoft's fhir-server implementation.

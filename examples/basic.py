@@ -2,6 +2,7 @@ import logging
 
 from python_fhir_integration_testing.fhir_runner import FHIRFlavor, FHIRRunner
 
+
 def main():
     logging.basicConfig(level="INFO")
     with FHIRRunner(
@@ -14,6 +15,7 @@ def main():
         port = running_fhir.port
         path = running_fhir.path
         host_port = running_fhir.host_port
+
 
 if __name__ == "__main__":
     main()
