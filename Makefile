@@ -48,11 +48,11 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	flake8 python_fhir_integration_testing tests
+	flake8 pyembeddedfhir tests
 lint/black: ## check style with black
-	black --check python_fhir_integration_testing tests
+	black --check pyembeddedfhir tests
 lint/mypy: ## check typings with mypy
-	mypy --show-error-codes python_fhir_integration_testing tests
+	mypy --show-error-codes pyembeddedfhir tests
 
 lint: lint/flake8 lint/black lint/mypy ## check style
 
@@ -63,15 +63,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source python_fhir_integration_testing -m pytest
+	coverage run --source pyembeddedfhir -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/python_fhir_integration_testing.rst
+	rm -f docs/pyembeddedfhir.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ python_fhir_integration_testing
+	sphinx-apidoc -o docs/ pyembeddedfhir
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

@@ -2,6 +2,8 @@
 History
 =======
 
+* #16 Renamed the project to pyembeddedfhir.
+
 1.1.1 (2021-11-07)
 ------------------
 

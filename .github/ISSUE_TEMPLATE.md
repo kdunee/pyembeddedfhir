@@ -1,4 +1,4 @@
-* python-fhir-integration-testing version:
+* pyembeddedfhir version:
 * Python version:
 * Operating System:
 

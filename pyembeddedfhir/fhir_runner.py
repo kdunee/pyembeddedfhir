@@ -133,7 +133,7 @@ class FHIRRunner(object):
 
             if configuration.network_id is None:
                 network = docker_client.networks.create(
-                    name="python_fhir_integration_testing",
+                    name="pyembeddedfhir",
                     driver="bridge",
                     labels={DOCKER_LABEL_KEY: get_docker_label_value()},
                 )

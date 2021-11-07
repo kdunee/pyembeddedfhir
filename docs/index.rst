@@ -1,4 +1,4 @@
-Welcome to python-fhir-integration-testing's documentation!
+Welcome to pyembeddedfhir's documentation!
 ======================================
 
 .. toctree::

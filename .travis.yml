@@ -22,5 +22,5 @@ deploy:
     secure: FN4E+4RYGuo7LulotFsf+GJ+tuNKdzZhH2ePVIPKJ/VrjZX4TI+5EcRjuxJg6ku9/ClwRExSlEcgi6zw3HvWyM2ZWdHngmu1M8edODeIhiizvZcOpoS82CwbVpUfVR0obTx5epfr4+MSMCWuhSNwTBMKzvckaG6yQjWFRcjg7ZWvvGOBIUhWTWA7nEK0ZXewSxblnE4FWgqsSKR5kH7hiErWWpAPfn5hGD7+JG9FWvTfD0to3YVMIlzatAPOSHg+yMshEqzvE/Xv9TOxdZ4xDGcKAO8iGLKhm1a3/XAW2aegFK/86Zu6SmhVmh7LXDzIhXrdDJ3FN4kff/imFTcvm+9wyFaJ8DLuVnlFWeeqcOVWK9MeJ0T6E0uFYdWmFgQNt4sXX/HEtyUQtB4IC6HrpzVR0jwWecDoYLKKbW43MCStgGtlC6IoKP3fVyrG117YGpPgMi/3jukvTAKzc5T1qF0HplUnmLhQjr45iF1cn0qsvdEgWMHKJVIhuHx08l9aMwpwY6KVXkFPYvOY00C3CiPnrJfHeKemk4kHkb4dU7huhJ8x5zCcxwC68jeL5h3L5TQT/0KxsopMuf4laeLeZT9K5Ecy8Vz3cimR7qE18mIgE+1p9XuP/r1f8TaEN4j24loMF/XkA7AQNMyiLZClWgxHbsG17YLFJvrzleEqg/o=
   on:
     tags: true
-    repo: kdunee/python-fhir-integration-testing
+    repo: kdunee/pyembeddedfhir
     python: 3.8

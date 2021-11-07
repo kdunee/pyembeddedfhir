@@ -1,16 +1,16 @@
-class PythonFHIRIntegrationTestingError(Exception):
+class PyFHIREmbeddedError(Exception):
     """A base class for errors in this package."""
 
     pass
 
 
-class StartupTimeoutError(PythonFHIRIntegrationTestingError):
+class StartupTimeoutError(PyFHIREmbeddedError):
     """An error generated, when a startup timeout was reached."""
 
     pass
 
 
-class ContainerRuntimeError(PythonFHIRIntegrationTestingError):
+class ContainerRuntimeError(PyFHIREmbeddedError):
     """An error generated, when the container runtime failed."""
 
     pass
@@ -22,7 +22,7 @@ class NetworkNotFoundError(ContainerRuntimeError):
     pass
 
 
-class AlreadyStoppedError(PythonFHIRIntegrationTestingError):
+class AlreadyStoppedError(PyFHIREmbeddedError):
     """An error generated, when the user attempted to stop
     a server that was already stopped."""
 

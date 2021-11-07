@@ -1,1 +1,1 @@
-"""Unit test package for python_fhir_integration_testing."""
+"""Unit test package for pyembeddedfhir."""

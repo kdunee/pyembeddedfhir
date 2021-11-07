@@ -1,7 +1,7 @@
-python_fhir_integration_testing
-===============================
+pyembeddedfhir
+==============
 
 .. toctree::
    :maxdepth: 4
 
-   python_fhir_integration_testing
+   pyembeddedfhir

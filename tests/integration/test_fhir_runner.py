@@ -4,7 +4,7 @@ from http import HTTPStatus
 import requests
 import pytest
 
-from python_fhir_integration_testing.fhir_runner import FHIRFlavor, FHIRRunner
+from pyembeddedfhir.fhir_runner import FHIRFlavor, FHIRRunner
 
 
 @pytest.fixture(
