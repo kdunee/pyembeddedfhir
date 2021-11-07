@@ -8,8 +8,6 @@ import docker  # type: ignore[import]
 class FHIRFlavor(Enum):
     HAPI = auto()
     MICROSOFT = auto()
-    IBM = auto()
-    SPARK = auto()
 
 
 @dataclass

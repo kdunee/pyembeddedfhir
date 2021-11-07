@@ -8,7 +8,11 @@ import psutil  # type: ignore[import]
 
 from .errors import AlreadyStoppedError, ContainerRuntimeError
 from .commons import DOCKER_LABEL_KEY, get_docker_label_value
-from .implementations import FHIRImplementation, HAPIFHIRImplementation
+from .implementations import (
+    FHIRImplementation,
+    HAPIFHIRImplementation,
+    MicrosoftFHIRImplemention,
+)
 from .models import Configuration, FHIRFlavor, RunningFHIR
 
 LOGGER = logging.getLogger(__name__)
@@ -50,11 +54,7 @@ def _create_implementation(flavor: FHIRFlavor) -> FHIRImplementation:
     if flavor == FHIRFlavor.HAPI:
         return HAPIFHIRImplementation()
     elif flavor == FHIRFlavor.MICROSOFT:
-        raise NotImplementedError()
-    elif flavor == FHIRFlavor.IBM:
-        raise NotImplementedError()
-    elif flavor == FHIRFlavor.SPARK:
-        raise NotImplementedError()
+        return MicrosoftFHIRImplemention()
     else:
         raise NotImplementedError()
 
