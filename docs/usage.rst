@@ -24,4 +24,26 @@ To use python-fhir-integration-testing in a project::
         path = running_fhir.path
         host_port = running_fhir.host_port
 
-For available values of ``FHIRFlavor`` please refer to :class:`python_fhir_integration_testing.models.FHIRFlavor`.
+-----
+API
+-----
+
+.. autoclass:: python_fhir_integration_testing.fhir_runner.FHIRRunner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: python_fhir_integration_testing.models.FHIRFlavor
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: python_fhir_integration_testing.models.RunningFHIR
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: python_fhir_integration_testing.errors
+    :members:
+    :undoc-members:
+    :show-inheritance:
