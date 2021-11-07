@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=python_fhir_integration_testing
+set SPHINXPROJ=pyembeddedfhir
 
 if "%1" == "" goto help
 

@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install python-fhir-integration-testing, run this command in your terminal:
+To install pyembeddedfhir, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install python_fhir_integration_testing
+    $ pip install pyembeddedfhir
 
-This is the preferred method to install python-fhir-integration-testing, as it will always install the most recent stable release.
+This is the preferred method to install pyembeddedfhir, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for python-fhir-integration-testing can be downloaded from the `Github repo`_.
+The sources for pyembeddedfhir can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/kdunee/python-fhir-integration-testing
+    $ git clone git://github.com/kdunee/pyembeddedfhir
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/kdunee/python-fhir-integration-testing/tarball/master
+    $ curl -OJL https://github.com/kdunee/pyembeddedfhir/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/kdunee/python-fhir-integration-testing
-.. _tarball: https://github.com/kdunee/python-fhir-integration-testing/tarball/master
+.. _Github repo: https://github.com/kdunee/pyembeddedfhir
+.. _tarball: https://github.com/kdunee/pyembeddedfhir/tarball/master

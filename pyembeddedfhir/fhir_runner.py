@@ -64,7 +64,7 @@ class FHIRRunner(object):
 
     Can be used in one of two ways:
 
-    * Directly, using ``running_fhir`` property and the ``stop`` method.
+    * Directly, using the ``running_fhir`` property and the ``stop`` method.
     * As a context manager: ``with FHIRRunner(configuration) as running_fhir:``
 
     :param flavor: Selected FHIR implementation.
@@ -83,6 +83,8 @@ class FHIRRunner(object):
     :param docker_client: A Docker client, will be created
         using ``docker.from_env()`` if not set, defaults to None
     :type docker_client: Optional[docker.DockerClient], optional
+    :ivar running_fhir: Descriptor of the running FHIR server.
+    :vartype running_fhir: RunningFHIR
     :raises NotImplementedError: Selected implementation is not supported.
     :raises StartupTimeoutError: An error caused by exceeding the time limit.
     :raises ContainerRuntimeError: An error related to container runtime.
@@ -131,7 +133,7 @@ class FHIRRunner(object):
 
             if configuration.network_id is None:
                 network = docker_client.networks.create(
-                    name="python_fhir_integration_testing",
+                    name="pyembeddedfhir",
                     driver="bridge",
                     labels={DOCKER_LABEL_KEY: get_docker_label_value()},
                 )

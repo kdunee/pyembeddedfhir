@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = python_fhir_integration_testing
+SPHINXPROJ    = pyembeddedfhir
 SOURCEDIR     = .
 BUILDDIR      = _build
 

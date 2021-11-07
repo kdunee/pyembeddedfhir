@@ -37,14 +37,14 @@ setup(
     license="MIT license",
     long_description=readme + "\n\n" + history,
     include_package_data=True,
-    keywords="python_fhir_integration_testing",
-    name="python_fhir_integration_testing",
+    keywords="pyembeddedfhir",
+    name="pyembeddedfhir",
     packages=find_packages(
-        include=["python_fhir_integration_testing", "python_fhir_integration_testing.*"]
+        include=["pyembeddedfhir", "pyembeddedfhir.*"]
     ),
     test_suite="tests",
     tests_require=test_requirements,
-    url="https://github.com/kdunee/python-fhir-integration-testing",
-    version="1.1.1",
+    url="https://github.com/kdunee/pyembeddedfhir",
+    version="1.1.2",
     zip_safe=False,
 )
