@@ -24,7 +24,10 @@ A simple way to use a 🔥 FHIR server in 🐍 Python integration tests.
 Features
 --------
 
-* Supports HAPI open-source FHIR server.
+* Uses Docker to run a FHIR server in a container. 
+* Supported implementations:
+   * `HAPI FHIR <https://github.com/hapifhir/hapi-fhir>`_ server.
+   * Microsoft's `fhir-server <https://github.com/microsoft/fhir-server>`_.
 
 Credits
 -------
