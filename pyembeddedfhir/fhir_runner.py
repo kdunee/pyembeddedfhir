@@ -2,6 +2,7 @@ import logging
 from typing import Optional
 
 import docker  # type: ignore[import]
+from docker.client import DockerClient  # type: ignore[import]
 from docker.models.networks import Network  # type: ignore[import]
 from docker.errors import APIError  # type: ignore[import]
 import psutil  # type: ignore[import]
@@ -18,7 +19,7 @@ from .models import Configuration, FHIRFlavor, RunningFHIR
 LOGGER = logging.getLogger(__name__)
 
 
-def _kill_orphaned_containers(docker_client: docker.DockerClient):
+def _kill_orphaned_containers(docker_client: DockerClient):
     containers = docker_client.containers.list(
         filters={
             "label": DOCKER_LABEL_KEY,
@@ -34,7 +35,7 @@ def _kill_orphaned_containers(docker_client: docker.DockerClient):
             container.kill()
 
 
-def _kill_orphaned_networks(docker_client: docker.DockerClient):
+def _kill_orphaned_networks(docker_client: DockerClient):
     networks = docker_client.networks.list(
         filters={
             "label": DOCKER_LABEL_KEY,
@@ -82,7 +83,7 @@ class FHIRRunner(object):
     :type startup_timeout: float, optional
     :param docker_client: A Docker client, will be created
         using ``docker.from_env()`` if not set, defaults to None
-    :type docker_client: Optional[docker.DockerClient], optional
+    :type docker_client: Optional[DockerClient], optional
     :ivar running_fhir: Descriptor of the running FHIR server.
     :vartype running_fhir: RunningFHIR
     :raises NotImplementedError: Selected implementation is not supported.
@@ -104,7 +105,7 @@ class FHIRRunner(object):
         kill_orphans: bool = True,
         network_id: Optional[str] = None,
         startup_timeout: float = 120,
-        docker_client: Optional[docker.DockerClient] = None,
+        docker_client: Optional[DockerClient] = None,
     ) -> None:
         """A constructor of ``RunningFHIR``."""
         self._configuration = Configuration(
@@ -131,7 +132,8 @@ class FHIRRunner(object):
                 _kill_orphaned_containers(docker_client)
                 _kill_orphaned_networks(docker_client)
 
-            if configuration.network_id is None:
+            new_network_created = configuration.network_id is None
+            if new_network_created:
                 network = docker_client.networks.create(
                     name="pyembeddedfhir",
                     driver="bridge",
@@ -141,11 +143,16 @@ class FHIRRunner(object):
                 network = docker_client.networks.get(configuration.network_id)
             self._network = network
 
-            return self._implementation.start(
-                docker_client,
-                configuration,
-                network,
-            )
+            try:
+                return self._implementation.start(
+                    docker_client,
+                    configuration,
+                    network,
+                )
+            except:  # noqa: E722 (intentionally using bare except)
+                if new_network_created:
+                    network.remove()
+                raise
         except APIError as e:
             raise ContainerRuntimeError(e)
 
@@ -167,12 +174,10 @@ class FHIRRunner(object):
         :raises ContainerRuntimeError: An error related to container runtime.
         :raises AlreadyStoppedError: If the runner was already stopped.
         """
-        # TODO: handle errors
         self._stop()
 
     def __enter__(self) -> RunningFHIR:
         return self.running_fhir
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
-        # TODO: handle errors (wrap exc_val if needed)
         self._stop()

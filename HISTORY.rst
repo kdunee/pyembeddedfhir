@@ -2,6 +2,8 @@
 History
 =======
 
+#11 Improved error handling.
+
 1.1.2 (2021-11-07)
 ------------------
 
