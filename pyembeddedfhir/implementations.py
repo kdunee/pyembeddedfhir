@@ -136,6 +136,11 @@ class FHIRImplementation(ABC):
 
 class HAPIFHIRImplementation(FHIRImplementation):
     _CONTAINER_PORT = 8080
+    _containers: List[Container]
+
+    def __init__(self):
+        super().__init__()
+        self._containers = []
 
     def _pull_image(self, docker_client: DockerClient) -> Image:
         LOGGER.info("Pulling HAPI FHIR image...")
@@ -162,7 +167,7 @@ class HAPIFHIRImplementation(FHIRImplementation):
             network=network.id,
             labels={DOCKER_LABEL_KEY: get_docker_label_value()},
         )
-        self._container = container
+        self._containers.append(container)
         container.reload()
         return container
 
@@ -172,35 +177,44 @@ class HAPIFHIRImplementation(FHIRImplementation):
         configuration: Configuration,
         network: Network,
     ) -> RunningFHIR:
-        image = self._pull_image(docker_client)
-        ports_config = _prepare_ports_config(
-            configuration.host_ip, HAPIFHIRImplementation._CONTAINER_PORT
-        )
-        container = self._run_container(
-            docker_client,
-            network,
-            image,
-            ports_config,
-        )
+        try:
+            image = self._pull_image(docker_client)
+            ports_config = _prepare_ports_config(
+                configuration.host_ip, HAPIFHIRImplementation._CONTAINER_PORT
+            )
+            container = self._run_container(
+                docker_client,
+                network,
+                image,
+                ports_config,
+            )
 
-        return _create_running_fhir_from_container(
-            docker_client=docker_client,
-            configuration=configuration,
-            network=network,
-            container=container,
-            base_path="/fhir/",
-            port=HAPIFHIRImplementation._CONTAINER_PORT,
-        )
+            return _create_running_fhir_from_container(
+                docker_client=docker_client,
+                configuration=configuration,
+                network=network,
+                container=container,
+                base_path="/fhir/",
+                port=HAPIFHIRImplementation._CONTAINER_PORT,
+            )
+        except:  # noqa: E722 (intentionally using bare except)
+            self.stop()
+            raise
 
     def stop(self) -> None:
-        self._container.kill()
+        for container in self._containers:
+            container.kill()
 
 
 class MicrosoftFHIRImplemention(FHIRImplementation):
     _SAPASSWORD = "wW89*XK6aedjMSz9s"
     _CONTAINER_PORT = 8080
 
-    _containers: List[Container] = []
+    _containers: List[Container]
+
+    def __init__(self):
+        super().__init__()
+        self._containers = []
 
     def _pull_mssql_image(self, docker_client: DockerClient) -> Image:
         LOGGER.info("Pulling MSSQL image...")
@@ -306,31 +320,43 @@ class MicrosoftFHIRImplemention(FHIRImplementation):
         configuration: Configuration,
         network: Network,
     ) -> RunningFHIR:
-        mssql_image = self._pull_mssql_image(docker_client)
-        mssql_container = self._run_mssql(mssql_image, docker_client, network)
-        self._wait_for_mssql(mssql_container, configuration.startup_timeout)
-        mssql_network_settings = mssql_container.attrs["NetworkSettings"]
-        mssql_network = _select_container_network_by_id(
-            network.id, mssql_network_settings["Networks"].values()
-        )
-        mssql_host = mssql_network["IPAddress"]
+        try:
+            mssql_image = self._pull_mssql_image(docker_client)
+            mssql_container = self._run_mssql(
+                mssql_image,
+                docker_client,
+                network,
+            )
+            self._wait_for_mssql(
+                mssql_container,
+                configuration.startup_timeout,
+            )
+            mssql_network_settings = mssql_container.attrs["NetworkSettings"]
+            mssql_network = _select_container_network_by_id(
+                network.id, mssql_network_settings["Networks"].values()
+            )
+            mssql_host = mssql_network["IPAddress"]
 
-        ports_config = _prepare_ports_config(
-            configuration.host_ip, MicrosoftFHIRImplemention._CONTAINER_PORT
-        )
-        fhir_image = self._pull_fhir_server(docker_client)
-        fhir_container = self._run_fhir_server(
-            fhir_image, docker_client, network, mssql_host, ports_config
-        )
+            ports_config = _prepare_ports_config(
+                configuration.host_ip,
+                MicrosoftFHIRImplemention._CONTAINER_PORT,
+            )
+            fhir_image = self._pull_fhir_server(docker_client)
+            fhir_container = self._run_fhir_server(
+                fhir_image, docker_client, network, mssql_host, ports_config
+            )
 
-        return _create_running_fhir_from_container(
-            docker_client=docker_client,
-            configuration=configuration,
-            network=network,
-            container=fhir_container,
-            base_path="/",
-            port=MicrosoftFHIRImplemention._CONTAINER_PORT,
-        )
+            return _create_running_fhir_from_container(
+                docker_client=docker_client,
+                configuration=configuration,
+                network=network,
+                container=fhir_container,
+                base_path="/",
+                port=MicrosoftFHIRImplemention._CONTAINER_PORT,
+            )
+        except:  # noqa: E722 (intentionally using bare except)
+            self.stop()
+            raise
 
     def stop(self) -> None:
         for container in self._containers:
