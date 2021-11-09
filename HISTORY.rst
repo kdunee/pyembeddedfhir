@@ -2,6 +2,14 @@
 History
 =======
 
+1.1.3 (2021-11-07)
+------------------
+
+#11 Improved error handling.
+
+1.1.2 (2021-11-07)
+------------------
+
 * #16 Renamed the project to pyembeddedfhir.
 
 1.1.1 (2021-11-07)
